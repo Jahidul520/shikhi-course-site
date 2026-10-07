@@ -44,12 +44,24 @@ document.querySelector('#enroll-form').addEventListener('submit',async event=>{
   const summary=`নাম: ${data.get('name')}\nমোবাইল: ${data.get('phone')}\nকোর্স: ${course?.title??''}\nমূল্য: ${money(course?.price??0)}\nট্রানজ্যাকশন আইডি: ${data.get('transactionId')}\nপেমেন্ট মাধ্যম: ${data.get('paymentMethod')}`;
   const feedback=document.querySelector('#form-feedback');
   if(!CONFIG.GOOGLE_FORM_URL){feedback.textContent='এনরোলমেন্ট নিতে আগে script.js-এ আপনার প্রকাশযোগ্য Google Form URL যোগ করুন। এই সাইট ফর্মের তথ্য কোথাও জমা দেয় না।';feedback.classList.add('visible');return;}
-  try{await navigator.clipboard.writeText(summary);feedback.textContent='আপনার তথ্য কপি হয়েছে। Google Form-এ প্রতিটি ঘরে সংশ্লিষ্ট তথ্য বসিয়ে স্ক্রিনশট আপলোড করে সাবমিট করুন।';}
-  catch{feedback.textContent='Google Form-এ প্রতিটি ঘরে সংশ্লিষ্ট তথ্য লিখুন, স্ক্রিনশট আপলোড করে Submit করুন।';}
-  feedback.classList.add('visible');window.open(CONFIG.GOOGLE_FORM_URL,'_blank','noopener,noreferrer');
+  const formTab=window.open(CONFIG.GOOGLE_FORM_URL,'_blank');
+  if(formTab)formTab.opener=null;
+  const formLink=document.createElement('a');formLink.href=CONFIG.GOOGLE_FORM_URL;formLink.target='_blank';formLink.rel='noopener noreferrer';formLink.className='form-fallback-link';formLink.textContent='Google Form খুলুন';
+  feedback.replaceChildren();
+  try{
+    await navigator.clipboard.writeText(summary);
+    feedback.append(document.createTextNode(formTab?'তথ্য কপি হয়েছে এবং Google Form খোলা হয়েছে। ফর্মে প্রতিটি ঘরে তথ্য বসিয়ে স্ক্রিনশট আপলোড করে Submit করুন। ':'তথ্য কপি হয়েছে। পপ-আপ ব্লক হলে নিচের লিংক দিয়ে Google Form খুলুন; সেখানে তথ্য বসিয়ে স্ক্রিনশট আপলোড করে Submit করুন। '));
+  }catch{
+    feedback.append(document.createTextNode(formTab?'Google Form খোলা হয়েছে। সেখানে প্রতিটি ঘরে তথ্য লিখে স্ক্রিনশট আপলোড করে Submit করুন। ':'পপ-আপ ব্লক হয়েছে। নিচের লিংক দিয়ে Google Form খুলে প্রতিটি ঘরে তথ্য লিখুন, স্ক্রিনশট আপলোড করে Submit করুন। '));
+  }
+  feedback.append(formLink);feedback.classList.add('visible');
 });
-const menu=document.querySelector('.menu-toggle');menu.addEventListener('click',()=>{const links=document.querySelector('.nav-links');const isOpen=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(isOpen))});
-document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+const menu=document.querySelector('.menu-toggle');
+const navLinks=document.querySelector('.nav-links');
+function setMenuOpen(isOpen){navLinks.classList.toggle('open',isOpen);menu.setAttribute('aria-expanded',String(isOpen));menu.setAttribute('aria-label',isOpen?'মেনু বন্ধ করুন':'মেনু খুলুন')}
+menu.addEventListener('click',()=>setMenuOpen(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenuOpen(false)));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&navLinks.classList.contains('open'))setMenuOpen(false)});
 document.querySelector('#year').textContent=new Date().getFullYear();
 const demoToggle=document.querySelector('#demo-toggle');
 demoToggle?.addEventListener('click',()=>{const card=document.querySelector('#demo-card');const active=card.classList.toggle('alt-color');demoToggle.setAttribute('aria-pressed',String(active));demoToggle.textContent=active?'আবার আগের রং দেখুন ↗':'রং বদলে দেখুন ↗'});
