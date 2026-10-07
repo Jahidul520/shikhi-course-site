@@ -1,7 +1,7 @@
 /* পেমেন্ট নম্বর ও Google Form link এখানে সেট করা আছে। পরিবর্তন করলে সাইটে প্রকাশ করুন। */
 const CONFIG = {
   PAYMENT_NUMBERS: { bkash: '01615709639', nagad: '01408754249' },
-  GOOGLE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdSuhImUJuiqV2WYe8zsodkMd4BSLtP0-vg7g2LYR7n94LscQ/viewform?usp=publish-editor'
+  GOOGLE_FORM_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSdSuhImUJuiqV2WYe8zsodkMd4BSLtP0-vg7g2LYR7n94LscQ/viewform'
 };
 
 const courses = [
@@ -38,22 +38,25 @@ document.addEventListener('click',event=>{
   const copy=event.target.closest('[data-copy]');if(copy){const value=copy.closest('.payment-method').querySelector('[data-payment-number]').textContent;if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}navigator.clipboard?.writeText(value).then(()=>showToast('পেমেন্ট নম্বর কপি হয়েছে')).catch(()=>showToast(value));return}
 });
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
-document.querySelector('#enroll-form').addEventListener('submit',async event=>{
+document.querySelector('#enroll-form').addEventListener('submit',event=>{
   event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;
   const data=new FormData(form);const course=courses.find(c=>c.id===data.get('course'));
-  const summary=`নাম: ${data.get('name')}\nমোবাইল: ${data.get('phone')}\nকোর্স: ${course?.title??''}\nমূল্য: ${money(course?.price??0)}\nট্রানজ্যাকশন আইডি: ${data.get('transactionId')}\nপেমেন্ট মাধ্যম: ${data.get('paymentMethod')}`;
   const feedback=document.querySelector('#form-feedback');
   if(!CONFIG.GOOGLE_FORM_URL){feedback.textContent='এনরোলমেন্ট নিতে আগে script.js-এ আপনার প্রকাশযোগ্য Google Form URL যোগ করুন। এই সাইট ফর্মের তথ্য কোথাও জমা দেয় না।';feedback.classList.add('visible');return;}
-  const formTab=window.open(CONFIG.GOOGLE_FORM_URL,'_blank');
+  const prefill=new URL(CONFIG.GOOGLE_FORM_URL);
+  // Google Forms entry IDs; update these if the matching questions are recreated.
+  prefill.searchParams.set('usp','pp_url');
+  prefill.searchParams.set('entry.2086380086',String(data.get('name')));
+  prefill.searchParams.set('entry.170435205',String(data.get('phone')));
+  prefill.searchParams.set('entry.2131158539',course?.title??'');
+  prefill.searchParams.set('entry.214556383',String(data.get('transactionId')));
+  prefill.searchParams.set('entry.2086194118',String(data.get('paymentMethod')));
+  const prefilledFormUrl=prefill.toString();
+  const formTab=window.open(prefilledFormUrl,'_blank');
   if(formTab)formTab.opener=null;
-  const formLink=document.createElement('a');formLink.href=CONFIG.GOOGLE_FORM_URL;formLink.target='_blank';formLink.rel='noopener noreferrer';formLink.className='form-fallback-link';formLink.textContent='Google Form খুলুন';
+  const formLink=document.createElement('a');formLink.href=prefilledFormUrl;formLink.target='_blank';formLink.rel='noopener noreferrer';formLink.className='form-fallback-link';formLink.textContent='আগে থেকে পূরণ করা Google Form খুলুন';
   feedback.replaceChildren();
-  try{
-    await navigator.clipboard.writeText(summary);
-    feedback.append(document.createTextNode(formTab?'তথ্য কপি হয়েছে এবং Google Form খোলা হয়েছে। ফর্মে প্রতিটি ঘরে তথ্য বসিয়ে স্ক্রিনশট আপলোড করে Submit করুন। ':'তথ্য কপি হয়েছে। পপ-আপ ব্লক হলে নিচের লিংক দিয়ে Google Form খুলুন; সেখানে তথ্য বসিয়ে স্ক্রিনশট আপলোড করে Submit করুন। '));
-  }catch{
-    feedback.append(document.createTextNode(formTab?'Google Form খোলা হয়েছে। সেখানে প্রতিটি ঘরে তথ্য লিখে স্ক্রিনশট আপলোড করে Submit করুন। ':'পপ-আপ ব্লক হয়েছে। নিচের লিংক দিয়ে Google Form খুলে প্রতিটি ঘরে তথ্য লিখুন, স্ক্রিনশট আপলোড করে Submit করুন। '));
-  }
+  feedback.append(document.createTextNode(formTab?'Google Form-এ আপনার তথ্য আগে থেকেই পূরণ করা হয়েছে। পেমেন্টের স্ক্রিনশট আপলোড করে Submit করুন। ':'পপ-আপ ব্লক হয়েছে। নিচের লিংকে চাপলে Google Form-এ তথ্য আগে থেকেই পূরণ থাকবে। স্ক্রিনশট আপলোড করে Submit করুন। '));
   feedback.append(formLink);feedback.classList.add('visible');
 });
 const menu=document.querySelector('.menu-toggle');
