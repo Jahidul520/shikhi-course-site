@@ -18,6 +18,7 @@ const dialogContent=document.querySelector('#dialog-content');
 const toast=document.querySelector('#toast');
 let toastTimer;
 const money=n=>`৳${n.toLocaleString('en-US')}`;
+const scrollToSection=element=>element?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
 
 function renderCourses(){
   select.innerHTML='<option value="">একটি কোর্স নির্বাচন করুন</option>'+courses.map(c=>`<option value="${c.id}">${c.title} · ${money(c.price)}</option>`).join('');
@@ -26,7 +27,7 @@ function updateCourseTotal(){const course=courses.find(item=>item.id===select.va
 select.addEventListener('change',updateCourseTotal);
 function openCourse(id){
   const c=courses.find(item=>item.id===id);if(!c)return;
-  dialogContent.innerHTML=`<div class="dialog-hero course-visual ${c.theme}"><img class="dialog-artwork" src="${c.image}" alt="" loading="lazy" decoding="async" /><span class="course-symbol">${c.symbol}</span></div><h2 id="dialog-title">${c.title}</h2><p>${c.description}</p><div class="dialog-details"><span>◷ ${c.duration}</span><span>● ${c.level}</span><strong>${money(c.price)}</strong></div><h3>কোর্সে যা যা শিখবেন</h3><ul class="learn-list">${c.learn.map(item=>`<li>${item}</li>`).join('')}</ul><h3>ক্লাসের তালিকা</h3><ol class="lesson-list">${c.lessons.map((item,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${item}</li>`).join('')}</ol><button class="dialog-print-link" type="button" data-print-course>সিলেবাস প্রিন্ট / PDF সেভ করুন ↗</button><button class="dialog-share-link" type="button" data-share-course="${c.id}">এই কোর্সের লিংক শেয়ার করুন ↗</button><a class="dialog-demo-link" href="#video-samples" data-demo-target="${c.demoId}">এই কোর্সের ফ্রি ডেমো দেখুন ↗</a><a class="button button-dark dialog-cta" href="#payment" data-enroll="${c.id}">এই কোর্সে এনরোল করুন <span>↗</span></a>`;
+  dialogContent.innerHTML=`<div class="dialog-hero course-visual ${c.theme}"><img class="dialog-artwork" src="${c.image}" alt="" loading="lazy" decoding="async" /><span class="course-symbol">${c.symbol}</span></div><h2 id="dialog-title">${c.title}</h2><p id="dialog-description">${c.description}</p><div class="dialog-details"><span>◷ ${c.duration}</span><span>● ${c.level}</span><strong>${money(c.price)}</strong></div><h3>কোর্সে যা যা শিখবেন</h3><ul class="learn-list">${c.learn.map(item=>`<li>${item}</li>`).join('')}</ul><h3>ক্লাসের তালিকা</h3><ol class="lesson-list">${c.lessons.map((item,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${item}</li>`).join('')}</ol><button class="dialog-print-link" type="button" data-print-course>সিলেবাস প্রিন্ট / PDF সেভ করুন ↗</button><button class="dialog-share-link" type="button" data-share-course="${c.id}">এই কোর্সের লিংক শেয়ার করুন ↗</button><a class="dialog-demo-link" href="#video-samples" data-demo-target="${c.demoId}">এই কোর্সের ফ্রি ডেমো দেখুন ↗</a><a class="button button-dark dialog-cta" href="#payment" data-enroll="${c.id}">এই কোর্সে এনরোল করুন <span>↗</span></a>`;
   dialog.showModal();
 }
 function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300)}
@@ -39,13 +40,13 @@ async function shareCourse(id){
   }catch(error){if(error.name==='AbortError')return;window.prompt('কোর্সের লিংক কপি করুন',shareUrl.href)}
 }
 function setPaymentNumbers(){document.querySelectorAll('[data-payment-number]').forEach(el=>{const method=el.closest('.payment-method').classList.contains('bkash')?'bkash':'nagad';el.textContent=CONFIG.PAYMENT_NUMBERS[method]||'নম্বর যোগ করুন'})}
-grid.addEventListener('click',event=>{const enroll=event.target.closest('[data-quick-enroll]');if(enroll){event.preventDefault();select.value=enroll.dataset.quickEnroll;updateCourseTotal();document.querySelector('#payment').scrollIntoView({behavior:'smooth'});return}const card=event.target.closest('[data-course]');if(card){event.preventDefault();openCourse(card.dataset.course)}});
+grid.addEventListener('click',event=>{const enroll=event.target.closest('[data-quick-enroll]');if(enroll){event.preventDefault();select.value=enroll.dataset.quickEnroll;updateCourseTotal();scrollToSection(document.querySelector('#payment'));return}const card=event.target.closest('[data-course]');if(card){event.preventDefault();openCourse(card.dataset.course)}});
 document.addEventListener('click',event=>{
   const print=event.target.closest('[data-print-course]');if(print){window.print();return}
   const share=event.target.closest('[data-share-course]');if(share){shareCourse(share.dataset.shareCourse);return}
   const close=event.target.closest('[data-close]');if(close){dialog.close();return}
-  const enroll=event.target.closest('[data-enroll]');if(enroll){event.preventDefault();select.value=enroll.dataset.enroll;updateCourseTotal();dialog.close();setTimeout(()=>document.querySelector('#payment').scrollIntoView({behavior:'smooth'}),100);return}
-  const demo=event.target.closest('[data-demo-target]');if(demo){event.preventDefault();const target=document.getElementById(demo.dataset.demoTarget);dialog.close();setTimeout(()=>target?.scrollIntoView({behavior:'smooth',block:'center'}),100);return}
+  const enroll=event.target.closest('[data-enroll]');if(enroll){event.preventDefault();select.value=enroll.dataset.enroll;updateCourseTotal();dialog.close();setTimeout(()=>scrollToSection(document.querySelector('#payment')),100);return}
+  const demo=event.target.closest('[data-demo-target]');if(demo){event.preventDefault();const target=document.getElementById(demo.dataset.demoTarget);dialog.close();setTimeout(()=>scrollToSection(target),100);return}
   const copy=event.target.closest('[data-copy]');if(copy){const value=copy.closest('.payment-method').querySelector('[data-payment-number]').textContent;if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}navigator.clipboard?.writeText(value).then(()=>showToast('পেমেন্ট নম্বর কপি হয়েছে')).catch(()=>showToast(value));return}
 });
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
