@@ -2,3 +2,29 @@
 @media(max-width:900px){.course-grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:530px;gap:0}.hero-art{transform:scale(.86);transform-origin:center}.steps-wrap{gap:50px}.payment-wrap{gap:45px}.section-pad{padding-block:80px}}
 @media(max-width:650px){.wrap{width:min(100% - 34px,460px)}.site-header{height:66px}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;padding:16px 22px;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:15px}.nav-links.open{display:flex}.nav>.button{margin-left:auto;margin-right:10px}.menu-toggle{display:block}.hero{grid-template-columns:1fr;padding-block:65px 70px;gap:5px}.hero h1{font-size:47px}.hero-text{font-size:13px}.hero-art{height:310px;transform:scale(.8);margin:-5px -20px}.hero-note{margin-top:32px}.scroll-cue{bottom:15px}.section-pad{padding-block:66px}.section-heading{display:block;margin-bottom:28px}.section-heading h2,.payment-copy h2{font-size:36px}.section-heading>p{margin:15px 0 0;font-size:12px}.course-grid{gap:10px}.course-visual{height:122px}.course-body{padding:13px 12px}.course-body h3{font-size:13px}.course-body p{font-size:10px;height:50px}.course-tag{top:8px;left:8px;font-size:8px}.price{font-size:14px}.course-meta{font-size:9px}.all-courses-note{font-size:10px}.steps-wrap,.payment-wrap{grid-template-columns:1fr;gap:38px}.steps-intro h2{font-size:43px;margin:14px 0}.steps-intro>p{font-size:12px}.step{padding:19px 0}.payment-copy>p{font-size:12px}.enroll-form{padding:22px}.footer-inner{min-height:92px;flex-wrap:wrap;gap:0}.footer-inner .brand{font-size:18px}.footer-inner>p{width:100%;order:3;padding-bottom:14px}.back-top{font-size:9px}.dialog-content{padding:22px}.dialog-hero{margin-top:7px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* Clearer enrollment and trust details */
+.hero-note-icon{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:#e9f2ce;color:var(--green);font-size:13px;font-weight:800}
+.trust-section{background:#f1f3ed}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.trust-card{padding:24px;background:#fff;border:1px solid #e5e9e1;border-radius:10px;box-shadow:0 12px 30px rgba(31,56,43,.035)}
+.trust-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#eaf0dc;color:var(--green);font-family:var(--latin);font-size:12px;font-weight:700}
+.trust-card:nth-child(2) .trust-icon{background:#f9e8df;color:#ac6147}
+.trust-card:nth-child(3) .trust-icon{background:#e9e5f8;color:#695a9e}
+.trust-card h3{margin:18px 0 8px;font-size:15px}
+.trust-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.9}
+.trust-disclosure{display:flex;align-items:flex-start;gap:9px;margin:18px 0 0;padding:13px 15px;border:1px solid #e0e5db;border-radius:7px;color:#68736c;font-size:10px;line-height:1.8}
+.trust-disclosure span{color:#607c66;font-size:14px;line-height:1.5}
+.faq-section{background:#fff}
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:78px;align-items:start}
+.faq-intro h2{font-size:clamp(30px,3.8vw,43px);line-height:1.45;letter-spacing:-.045em;margin:17px 0 12px}
+.faq-intro>p{max-width:300px;color:var(--muted);font-size:12px;line-height:1.9}
+.faq-list{border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{position:relative;list-style:none;padding:19px 38px 19px 0;font-size:13px;font-weight:700;cursor:pointer}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:'+';position:absolute;right:4px;top:14px;width:27px;height:27px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;color:var(--green);font-family:var(--latin);font-size:17px;font-weight:400;transition:transform .2s}
+.faq-list details[open] summary::after{content:'−';transform:rotate(180deg)}
+.faq-list details p{max-width:600px;margin:-3px 28px 18px 0;color:var(--muted);font-size:11px;line-height:1.9}
+@media(max-width:900px){.faq-wrap{gap:42px}}
+@media(max-width:650px){.trust-grid{grid-template-columns:1fr;gap:10px}.trust-card{padding:19px}.trust-card h3{margin-top:12px}.trust-disclosure{font-size:9px}.faq-wrap{grid-template-columns:1fr;gap:20px}.faq-intro h2{font-size:34px}.faq-list summary{font-size:12px;padding-block:16px}.nav-links{max-height:calc(100vh - 70px);overflow:auto}}
