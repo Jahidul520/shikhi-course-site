@@ -43,6 +43,19 @@ async function shareCourse(id){
   }catch(error){if(error.name==='AbortError')return;window.prompt('কোর্সের লিংক কপি করুন',shareUrl.href)}
 }
 function setPaymentNumbers(){document.querySelectorAll('[data-payment-number]').forEach(el=>{const method=el.closest('.payment-method').classList.contains('bkash')?'bkash':'nagad';el.textContent=CONFIG.PAYMENT_NUMBERS[method]||'নম্বর যোগ করুন'})}
+async function copyPaymentNumber(button){
+  const card=button.closest('.payment-method');
+  const value=card.querySelector('[data-payment-number]').textContent;
+  if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}
+  const method=card.classList.contains('bkash')?'বিকাশ':'নগদ';
+  try{
+    if(!navigator.clipboard?.writeText)throw new Error('Clipboard API unavailable');
+    await navigator.clipboard.writeText(value);
+    showToast(`${method} নম্বর কপি হয়েছে`);
+  }catch{
+    showToast(`কপি হয়নি—${method} নম্বরটি হাতে লিখুন: ${value}`);
+  }
+}
 grid.addEventListener('click',event=>{const enroll=event.target.closest('[data-quick-enroll]');if(enroll){event.preventDefault();select.value=enroll.dataset.quickEnroll;updateCourseTotal();scrollToSection(document.querySelector('#payment'));return}const card=event.target.closest('[data-course]');if(card){event.preventDefault();openCourse(card.dataset.course)}});
 document.addEventListener('click',event=>{
   const print=event.target.closest('[data-print-course]');if(print){window.print();return}
@@ -50,7 +63,7 @@ document.addEventListener('click',event=>{
   const close=event.target.closest('[data-close]');if(close){dialog.close();return}
   const enroll=event.target.closest('[data-enroll]');if(enroll){event.preventDefault();select.value=enroll.dataset.enroll;updateCourseTotal();dialog.close();setTimeout(()=>scrollToSection(document.querySelector('#payment')),100);return}
   const demo=event.target.closest('[data-demo-target]');if(demo){event.preventDefault();const target=document.getElementById(demo.dataset.demoTarget);dialog.close();setTimeout(()=>scrollToSection(target),100);return}
-  const copy=event.target.closest('[data-copy]');if(copy){const value=copy.closest('.payment-method').querySelector('[data-payment-number]').textContent;if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}navigator.clipboard?.writeText(value).then(()=>showToast('পেমেন্ট নম্বর কপি হয়েছে')).catch(()=>showToast(value));return}
+  const copy=event.target.closest('[data-copy]');if(copy){copyPaymentNumber(copy);return}
 });
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
 document.querySelector('#enroll-form').addEventListener('submit',event=>{
