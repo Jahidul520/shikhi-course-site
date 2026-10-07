@@ -82,6 +82,7 @@ body{background-color:#070b16;background-image:radial-gradient(ellipse at 14% 9%
 @media(prefers-reduced-motion:reduce){.art-center{animation:none}}
 .course-symbol{color:#72eaff}.design .course-symbol{color:#ff83d7}.marketing .course-symbol{color:#a99bff}.video .course-symbol{color:#c9baff}
 .course-tag{box-shadow:0 0 18px rgba(112,232,255,.08)}
+.course-visual{isolation:isolate}.course-artwork{z-index:0;filter:saturate(.88) contrast(1.04);transition:transform .5s ease,filter .5s ease}.course-card:hover .course-artwork{transform:scale(1.045);filter:saturate(1.02) contrast(1.06)}.course-visual.has-art::after{display:block;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(5,9,20,.03) 35%,rgba(5,9,20,.38) 100%)}.course-tag{z-index:2}.course-visual.marketing .course-artwork{object-position:center 72%}.photo-credit{margin:16px 0 0;color:#8191aa;font-size:10px}.photo-credit a{color:#9baec6;text-decoration:underline;text-decoration-color:rgba(112,232,255,.35);text-underline-offset:3px}.photo-credit a:hover{color:#78e7ff}
 :focus-visible{outline:2px solid #70e8ff!important;outline-offset:3px;box-shadow:0 0 0 5px rgba(112,232,255,.1)}
 ::selection{color:#07111d;background:#70e8ff}
 .enroll-form select option{color:#edf5ff;background:#0b1323}
