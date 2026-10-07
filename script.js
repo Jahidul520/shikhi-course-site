@@ -65,4 +65,5 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&navLinks.cl
 document.querySelector('#year').textContent=new Date().getFullYear();
 const demoToggle=document.querySelector('#demo-toggle');
 demoToggle?.addEventListener('click',()=>{const card=document.querySelector('#demo-card');const active=card.classList.toggle('alt-color');demoToggle.setAttribute('aria-pressed',String(active));demoToggle.textContent=active?'আবার আগের রং দেখুন ↗':'রং বদলে দেখুন ↗'});
+document.querySelectorAll('.video-preview').forEach(button=>button.addEventListener('click',()=>{const frame=button.closest('.video-frame');const video=document.createElement('iframe');video.src=`https://www.youtube-nocookie.com/embed/${encodeURIComponent(button.dataset.videoId)}?autoplay=1`;video.title=button.dataset.videoTitle;video.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';video.referrerPolicy='strict-origin-when-cross-origin';video.allowFullscreen=true;video.loading='lazy';frame.replaceChildren(video)}));
 renderCourses();setPaymentNumbers();
