@@ -23,6 +23,8 @@ function renderCourses(){
   grid.innerHTML=courses.map(course=>`<article class="course-card" tabindex="0" role="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme} has-art"><img class="course-artwork" src="${course.image}" alt="" loading="lazy" decoding="async" /><span class="course-tag">${course.category}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></article>`).join('');
   select.innerHTML='<option value="">একটি কোর্স নির্বাচন করুন</option>'+courses.map(c=>`<option value="${c.id}">${c.title} · ${money(c.price)}</option>`).join('');
 }
+function updateCourseTotal(){const course=courses.find(item=>item.id===select.value);document.querySelector('#course-total').textContent=course?money(course.price):'কোর্স বেছে নিন'}
+select.addEventListener('change',updateCourseTotal);
 function openCourse(id){
   const c=courses.find(item=>item.id===id);if(!c)return;
   dialogContent.innerHTML=`<div class="dialog-hero course-visual ${c.theme}"><img class="dialog-artwork" src="${c.image}" alt="" loading="lazy" decoding="async" /><span class="course-symbol">${c.symbol}</span></div><h2 id="dialog-title">${c.title}</h2><p>${c.description}</p><div class="dialog-details"><span>◷ ${c.duration}</span><span>● ${c.level}</span><strong>${money(c.price)}</strong></div><h3>কোর্সে যা যা শিখবেন</h3><ul class="learn-list">${c.learn.map(item=>`<li>${item}</li>`).join('')}</ul><h3>ক্লাসের তালিকা</h3><ol class="lesson-list">${c.lessons.map((item,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${item}</li>`).join('')}</ol><a class="button button-dark dialog-cta" href="#payment" data-enroll="${c.id}">এই কোর্সে এনরোল করুন <span>↗</span></a>`;
@@ -34,7 +36,7 @@ grid.addEventListener('click',event=>{const card=event.target.closest('[data-cou
 grid.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&event.target.matches('[data-course]')){event.preventDefault();openCourse(event.target.dataset.course)}});
 document.addEventListener('click',event=>{
   const close=event.target.closest('[data-close]');if(close){dialog.close();return}
-  const enroll=event.target.closest('[data-enroll]');if(enroll){select.value=enroll.dataset.enroll;dialog.close();setTimeout(()=>document.querySelector('#payment').scrollIntoView({behavior:'smooth'}),100);return}
+  const enroll=event.target.closest('[data-enroll]');if(enroll){select.value=enroll.dataset.enroll;updateCourseTotal();dialog.close();setTimeout(()=>document.querySelector('#payment').scrollIntoView({behavior:'smooth'}),100);return}
   const copy=event.target.closest('[data-copy]');if(copy){const value=copy.closest('.payment-method').querySelector('[data-payment-number]').textContent;if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}navigator.clipboard?.writeText(value).then(()=>showToast('পেমেন্ট নম্বর কপি হয়েছে')).catch(()=>showToast(value));return}
 });
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
@@ -46,10 +48,10 @@ document.querySelector('#enroll-form').addEventListener('submit',event=>{
   const prefill=new URL(CONFIG.GOOGLE_FORM_URL);
   // Google Forms entry IDs; update these if the matching questions are recreated.
   prefill.searchParams.set('usp','pp_url');
-  prefill.searchParams.set('entry.2086380086',String(data.get('name')));
-  prefill.searchParams.set('entry.170435205',String(data.get('phone')));
+  prefill.searchParams.set('entry.2086380086',String(data.get('name')).trim());
+  prefill.searchParams.set('entry.170435205',String(data.get('phone')).trim());
   prefill.searchParams.set('entry.2131158539',course?.title??'');
-  prefill.searchParams.set('entry.214556383',String(data.get('transactionId')));
+  prefill.searchParams.set('entry.214556383',String(data.get('transactionId')).trim());
   prefill.searchParams.set('entry.2086194118',String(data.get('paymentMethod')));
   const prefilledFormUrl=prefill.toString();
   const formTab=window.open(prefilledFormUrl,'_blank');

@@ -115,4 +115,6 @@ body{background-color:#070b16;background-image:radial-gradient(ellipse at 14% 9%
 .video-play-label{position:absolute;right:10px;bottom:10px;padding:4px 8px;border:1px solid rgba(255,255,255,.2);border-radius:20px;background:rgba(5,10,20,.76);color:#fff;font-size:9px;backdrop-filter:blur(8px)}
 .video-preview:focus-visible{outline-offset:-5px}
 @media(max-width:650px){.video-play{width:54px;height:40px;font-size:19px}}
+.enroll-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:3px 0 17px;padding:12px 14px;border:1px solid rgba(112,232,255,.22);border-radius:8px;background:rgba(112,232,255,.055);color:#aab9cc;font-size:11px}
+.enroll-total strong{color:#8cecff;font-size:16px;font-variant-numeric:tabular-nums}
 .dialog-details strong{color:#8deaff}
