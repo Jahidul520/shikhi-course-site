@@ -37,7 +37,8 @@ grid.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' '
 document.addEventListener('click',event=>{
   const close=event.target.closest('[data-close]');if(close){dialog.close();return}
   const enroll=event.target.closest('[data-enroll]');if(enroll){select.value=enroll.dataset.enroll;updateCourseTotal();dialog.close();setTimeout(()=>document.querySelector('#payment').scrollIntoView({behavior:'smooth'}),100);return}
-  const demo=event.target.closest('[data-demo-target]');if(demo){event.preventDefault();const target=document.getElementById(demo.dataset.demoTarget);dialog.close();setTimeout(()=>target?.scrollIntoView({behavior:'smooth',block:'center'}),100);return}\n  const copy=event.target.closest('[data-copy]');if(copy){const value=copy.closest('.payment-method').querySelector('[data-payment-number]').textContent;if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}navigator.clipboard?.writeText(value).then(()=>showToast('পেমেন্ট নম্বর কপি হয়েছে')).catch(()=>showToast(value));return}
+  const demo=event.target.closest('[data-demo-target]');if(demo){event.preventDefault();const target=document.getElementById(demo.dataset.demoTarget);dialog.close();setTimeout(()=>target?.scrollIntoView({behavior:'smooth',block:'center'}),100);return}
+  const copy=event.target.closest('[data-copy]');if(copy){const value=copy.closest('.payment-method').querySelector('[data-payment-number]').textContent;if(value==='নম্বর যোগ করুন'){showToast('প্রকাশের আগে script.js-এ নিজের নম্বর যোগ করুন');return}navigator.clipboard?.writeText(value).then(()=>showToast('পেমেন্ট নম্বর কপি হয়েছে')).catch(()=>showToast(value));return}
 });
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
 document.querySelector('#enroll-form').addEventListener('submit',event=>{
