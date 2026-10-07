@@ -20,7 +20,7 @@ let toastTimer;
 const money=n=>`৳${n.toLocaleString('en-US')}`;
 
 function renderCourses(){
-  grid.innerHTML=courses.map(course=>`<article class="course-card" tabindex="0" role="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme} has-art"><img class="course-artwork" src="${course.image}" alt="" loading="lazy" decoding="async" /><span class="course-tag">${course.category}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></article>`).join('');
+  grid.innerHTML=courses.map(course=>`<article class="course-card"><button class="course-card-main" type="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme} has-art"><img class="course-artwork" src="${course.image}" alt="" loading="lazy" decoding="async" /><span class="course-tag">${course.category}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></button><button class="course-quick-enroll" type="button" data-quick-enroll="${course.id}">ভর্তি শুরু করুন ↗</button></article>`).join('');
   select.innerHTML='<option value="">একটি কোর্স নির্বাচন করুন</option>'+courses.map(c=>`<option value="${c.id}">${c.title} · ${money(c.price)}</option>`).join('');
 }
 function updateCourseTotal(){const course=courses.find(item=>item.id===select.value);document.querySelector('#course-total').textContent=course?money(course.price):'কোর্স বেছে নিন'}
@@ -40,7 +40,7 @@ async function shareCourse(id){
   }catch(error){if(error.name==='AbortError')return;window.prompt('কোর্সের লিংক কপি করুন',shareUrl.href)}
 }
 function setPaymentNumbers(){document.querySelectorAll('[data-payment-number]').forEach(el=>{const method=el.closest('.payment-method').classList.contains('bkash')?'bkash':'nagad';el.textContent=CONFIG.PAYMENT_NUMBERS[method]||'নম্বর যোগ করুন'})}
-grid.addEventListener('click',event=>{const card=event.target.closest('[data-course]');if(card)openCourse(card.dataset.course)});
+grid.addEventListener('click',event=>{const enroll=event.target.closest('[data-quick-enroll]');if(enroll){select.value=enroll.dataset.quickEnroll;updateCourseTotal();document.querySelector('#payment').scrollIntoView({behavior:'smooth'});return}const card=event.target.closest('[data-course]');if(card)openCourse(card.dataset.course)});
 grid.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&event.target.matches('[data-course]')){event.preventDefault();openCourse(event.target.dataset.course)}});
 document.addEventListener('click',event=>{
   const share=event.target.closest('[data-share-course]');if(share){shareCourse(share.dataset.shareCourse);return}
