@@ -20,7 +20,7 @@ let toastTimer;
 const money=n=>`৳${n.toLocaleString('en-US')}`;
 
 function renderCourses(){
-  grid.innerHTML=courses.map(course=>`<article class="course-card" tabindex="0" role="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme} has-art"><img class="course-artwork" src="course-${course.id}.svg" alt="" loading="lazy" /><span class="course-tag">${course.category}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></article>`).join('');
+  grid.innerHTML=courses.map(course=>`<article class="course-card" tabindex="0" role="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme} has-art"><img class="course-artwork" src="course-${course.id}.svg?v=2070" alt="" loading="lazy" /><span class="course-tag">${course.category}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></article>`).join('');
   select.innerHTML='<option value="">একটি কোর্স নির্বাচন করুন</option>'+courses.map(c=>`<option value="${c.id}">${c.title} · ${money(c.price)}</option>`).join('');
 }
 function openCourse(id){
