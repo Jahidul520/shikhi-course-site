@@ -20,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css?v=image-optimization-1" />
-    <script src="script.js?v=image-optimization-1" defer></script>
+    <link rel="stylesheet" href="style.css?v=bd-phone-digits-1" />
+    <script src="script.js?v=bd-phone-digits-1" defer></script>
 </head>
 <body>
   <noscript><p class="noscript-notice">কোর্সের বিস্তারিত, পেমেন্ট নম্বর ও এনরোলমেন্ট ফর্ম ব্যবহার করতে এই সাইটে JavaScript চালু থাকতে হবে।</p></noscript>
@@ -135,7 +135,7 @@
       </div>
       <form class="enroll-form" id="enroll-form"><div class="form-top"><div><span class="form-kicker">আপনার আসন নিশ্চিত করুন</span><h3>এনরোলমেন্ট তথ্য</h3></div><span class="form-step">০১ / ০১</span></div>
         <label for="student-name">আপনার নাম</label><input id="student-name" name="name" type="text" placeholder="পুরো নাম লিখুন" required />
-        <label for="student-phone">মোবাইল নম্বর</label><input id="student-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="14" pattern="(?:\+?88)?01[3-9][0-9]{8}" title="বাংলাদেশি নম্বর দিন: 01XXXXXXXXX বা +8801XXXXXXXXX" placeholder="01XXXXXXXXX" required />
+        <label for="student-phone">মোবাইল নম্বর</label><input id="student-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="14" pattern="(?:\+?88)?01[3-9][0-9]{8}" title="বাংলাদেশি নম্বর দিন: 01XXXXXXXXX বা +8801XXXXXXXXX" placeholder="01XXXXXXXXX" aria-describedby="student-phone-help" required /><p class="form-helper" id="student-phone-help">বাংলা বা ইংরেজি অঙ্কে লিখুন। যাচাইয়ের আগে বাংলা অঙ্ক স্বয়ংক্রিয়ভাবে বদলাবে।</p>
         <label for="course-select">কোর্স বেছে নিন</label><select id="course-select" name="course" required><option value="">একটি কোর্স নির্বাচন করুন</option></select>
         <div class="enroll-total" aria-live="polite"><span>নির্বাচিত কোর্সের মোট মূল্য</span><strong id="course-total">কোর্স বেছে নিন</strong></div>
         <label for="transaction-id">ট্রানজ্যাকশন আইডি</label><input id="transaction-id" name="transactionId" type="text" placeholder="পেমেন্টের পর পাওয়া আইডি" required />

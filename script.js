@@ -13,6 +13,7 @@ const courses = [
 
 const grid=document.querySelector('#course-grid');
 const select=document.querySelector('#course-select');
+const phoneInput=document.querySelector('#student-phone');
 const dialog=document.querySelector('#course-dialog');
 const dialogContent=document.querySelector('#dialog-content');
 const toast=document.querySelector('#toast');
@@ -25,6 +26,8 @@ function renderCourses(){
 }
 function updateCourseTotal(){const course=courses.find(item=>item.id===select.value);document.querySelector('#course-total').textContent=course?money(course.price):'কোর্স বেছে নিন'}
 select.addEventListener('change',updateCourseTotal);
+const toEnglishDigits=value=>value.replace(/[০-৯٠-٩۰-۹]/g,d=>String(d.charCodeAt(0)-(d>='০'&&d<='৯'?0x09e6:d>='٠'&&d<='٩'?0x0660:0x06f0)));
+phoneInput.addEventListener('input',()=>{const cursor=phoneInput.selectionStart;const normalized=toEnglishDigits(phoneInput.value);if(normalized!==phoneInput.value){phoneInput.value=normalized;phoneInput.setSelectionRange(cursor,cursor)}});
 function openCourse(id){
   const c=courses.find(item=>item.id===id);if(!c)return;
   dialogContent.innerHTML=`<div class="dialog-hero course-visual ${c.theme}"><img class="dialog-artwork" src="${c.image}" width="${c.imageWidth}" height="${c.imageHeight}" alt="" loading="lazy" decoding="async" /><span class="course-symbol">${c.symbol}</span></div><h2 id="dialog-title">${c.title}</h2><p id="dialog-description">${c.description}</p><div class="dialog-details"><span>◷ ${c.duration}</span><span>● ${c.level}</span><strong>${money(c.price)}</strong></div><h3>কোর্সে যা যা শিখবেন</h3><ul class="learn-list">${c.learn.map(item=>`<li>${item}</li>`).join('')}</ul><h3>ক্লাসের তালিকা</h3><ol class="lesson-list">${c.lessons.map((item,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${item}</li>`).join('')}</ol><button class="dialog-print-link" type="button" data-print-course>সিলেবাস প্রিন্ট / PDF সেভ করুন ↗</button><button class="dialog-share-link" type="button" data-share-course="${c.id}">এই কোর্সের লিংক শেয়ার করুন ↗</button><a class="dialog-demo-link" href="#video-samples" data-demo-target="${c.demoId}">এই কোর্সের ফ্রি ডেমো দেখুন ↗</a><a class="button button-dark dialog-cta" href="#payment" data-enroll="${c.id}">এই কোর্সে এনরোল করুন <span>↗</span></a>`;
@@ -51,7 +54,7 @@ document.addEventListener('click',event=>{
 });
 dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
 document.querySelector('#enroll-form').addEventListener('submit',event=>{
-  event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;
+  event.preventDefault();const form=event.currentTarget;phoneInput.value=toEnglishDigits(phoneInput.value).replace(/[\s()-]/g,'');if(!form.reportValidity())return;
   const data=new FormData(form);const course=courses.find(c=>c.id===data.get('course'));
   const feedback=document.querySelector('#form-feedback');
   if(!CONFIG.GOOGLE_FORM_URL){feedback.textContent='এনরোলমেন্ট নিতে আগে script.js-এ আপনার প্রকাশযোগ্য Google Form URL যোগ করুন। এই সাইট ফর্মের তথ্য কোথাও জমা দেয় না।';feedback.classList.add('visible');return;}
