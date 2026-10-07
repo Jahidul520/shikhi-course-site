@@ -27,14 +27,23 @@ function updateCourseTotal(){const course=courses.find(item=>item.id===select.va
 select.addEventListener('change',updateCourseTotal);
 function openCourse(id){
   const c=courses.find(item=>item.id===id);if(!c)return;
-  dialogContent.innerHTML=`<div class="dialog-hero course-visual ${c.theme}"><img class="dialog-artwork" src="${c.image}" alt="" loading="lazy" decoding="async" /><span class="course-symbol">${c.symbol}</span></div><h2 id="dialog-title">${c.title}</h2><p>${c.description}</p><div class="dialog-details"><span>◷ ${c.duration}</span><span>● ${c.level}</span><strong>${money(c.price)}</strong></div><h3>কোর্সে যা যা শিখবেন</h3><ul class="learn-list">${c.learn.map(item=>`<li>${item}</li>`).join('')}</ul><h3>ক্লাসের তালিকা</h3><ol class="lesson-list">${c.lessons.map((item,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${item}</li>`).join('')}</ol><a class="dialog-demo-link" href="#video-samples" data-demo-target="${c.demoId}">এই কোর্সের ফ্রি ডেমো দেখুন ↗</a><a class="button button-dark dialog-cta" href="#payment" data-enroll="${c.id}">এই কোর্সে এনরোল করুন <span>↗</span></a>`;
+  dialogContent.innerHTML=`<div class="dialog-hero course-visual ${c.theme}"><img class="dialog-artwork" src="${c.image}" alt="" loading="lazy" decoding="async" /><span class="course-symbol">${c.symbol}</span></div><h2 id="dialog-title">${c.title}</h2><p>${c.description}</p><div class="dialog-details"><span>◷ ${c.duration}</span><span>● ${c.level}</span><strong>${money(c.price)}</strong></div><h3>কোর্সে যা যা শিখবেন</h3><ul class="learn-list">${c.learn.map(item=>`<li>${item}</li>`).join('')}</ul><h3>ক্লাসের তালিকা</h3><ol class="lesson-list">${c.lessons.map((item,i)=>`<li><span>${String(i+1).padStart(2,'0')}</span>${item}</li>`).join('')}</ol><button class="dialog-share-link" type="button" data-share-course="${c.id}">এই কোর্সের লিংক শেয়ার করুন ↗</button><a class="dialog-demo-link" href="#video-samples" data-demo-target="${c.demoId}">এই কোর্সের ফ্রি ডেমো দেখুন ↗</a><a class="button button-dark dialog-cta" href="#payment" data-enroll="${c.id}">এই কোর্সে এনরোল করুন <span>↗</span></a>`;
   dialog.showModal();
 }
 function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2300)}
+async function shareCourse(id){
+  const course=courses.find(item=>item.id===id);if(!course)return;
+  const shareUrl=new URL(window.location.href);shareUrl.search='';shareUrl.searchParams.set('course',id);shareUrl.hash='courses';
+  try{
+    if(navigator.share){await navigator.share({title:course.title,text:`${course.title} কোর্সের সিলেবাস ও মূল্য দেখুন`,url:shareUrl.href});return}
+    await navigator.clipboard.writeText(shareUrl.href);showToast('কোর্সের লিংক কপি হয়েছে');
+  }catch(error){if(error.name==='AbortError')return;window.prompt('কোর্সের লিংক কপি করুন',shareUrl.href)}
+}
 function setPaymentNumbers(){document.querySelectorAll('[data-payment-number]').forEach(el=>{const method=el.closest('.payment-method').classList.contains('bkash')?'bkash':'nagad';el.textContent=CONFIG.PAYMENT_NUMBERS[method]||'নম্বর যোগ করুন'})}
 grid.addEventListener('click',event=>{const card=event.target.closest('[data-course]');if(card)openCourse(card.dataset.course)});
 grid.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&event.target.matches('[data-course]')){event.preventDefault();openCourse(event.target.dataset.course)}});
 document.addEventListener('click',event=>{
+  const share=event.target.closest('[data-share-course]');if(share){shareCourse(share.dataset.shareCourse);return}
   const close=event.target.closest('[data-close]');if(close){dialog.close();return}
   const enroll=event.target.closest('[data-enroll]');if(enroll){select.value=enroll.dataset.enroll;updateCourseTotal();dialog.close();setTimeout(()=>document.querySelector('#payment').scrollIntoView({behavior:'smooth'}),100);return}
   const demo=event.target.closest('[data-demo-target]');if(demo){event.preventDefault();const target=document.getElementById(demo.dataset.demoTarget);dialog.close();setTimeout(()=>target?.scrollIntoView({behavior:'smooth',block:'center'}),100);return}
@@ -73,3 +82,4 @@ const demoToggle=document.querySelector('#demo-toggle');
 demoToggle?.addEventListener('click',()=>{const card=document.querySelector('#demo-card');const active=card.classList.toggle('alt-color');demoToggle.setAttribute('aria-pressed',String(active));demoToggle.textContent=active?'আবার আগের রং দেখুন ↗':'রং বদলে দেখুন ↗'});
 document.querySelectorAll('.video-preview').forEach(button=>button.addEventListener('click',()=>{const frame=button.closest('.video-frame');const video=document.createElement('iframe');video.src=`https://www.youtube-nocookie.com/embed/${encodeURIComponent(button.dataset.videoId)}?autoplay=1`;video.title=button.dataset.videoTitle;video.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';video.referrerPolicy='strict-origin-when-cross-origin';video.allowFullscreen=true;video.loading='lazy';frame.replaceChildren(video)}));
 renderCourses();setPaymentNumbers();
+const sharedCourseId=new URLSearchParams(window.location.search).get('course');if(courses.some(course=>course.id===sharedCourseId))openCourse(sharedCourseId);
