@@ -20,7 +20,7 @@ let toastTimer;
 const money=n=>`৳${n.toLocaleString('en-US')}`;
 
 function renderCourses(){
-  grid.innerHTML=courses.map(course=>`<article class="course-card" tabindex="0" role="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme}"><span class="course-tag">${course.category}</span><span class="course-symbol">${course.symbol}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></article>`).join('');
+  grid.innerHTML=courses.map(course=>`<article class="course-card" tabindex="0" role="button" data-course="${course.id}" aria-label="${course.title} কোর্সের বিস্তারিত দেখুন"><div class="course-visual ${course.theme} has-art"><img class="course-artwork" src="course-${course.id}.svg" alt="" loading="lazy" /><span class="course-tag">${course.category}</span></div><div class="course-body"><div class="course-meta"><span>${course.level}</span><span>${course.duration}</span></div><h3>${course.title}</h3><p>${course.description}</p><div class="course-bottom"><span class="price">${money(course.price)} <small>মোট</small></span><span class="card-open" aria-hidden="true">↗</span></div></div></article>`).join('');
   select.innerHTML='<option value="">একটি কোর্স নির্বাচন করুন</option>'+courses.map(c=>`<option value="${c.id}">${c.title} · ${money(c.price)}</option>`).join('');
 }
 function openCourse(id){
@@ -51,4 +51,6 @@ document.querySelector('#enroll-form').addEventListener('submit',async event=>{
 const menu=document.querySelector('.menu-toggle');menu.addEventListener('click',()=>{const links=document.querySelector('.nav-links');const isOpen=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(isOpen))});
 document.querySelectorAll('.nav-links a').forEach(link=>link.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 document.querySelector('#year').textContent=new Date().getFullYear();
+const demoToggle=document.querySelector('#demo-toggle');
+demoToggle?.addEventListener('click',()=>{const card=document.querySelector('#demo-card');const active=card.classList.toggle('alt-color');demoToggle.setAttribute('aria-pressed',String(active));demoToggle.textContent=active?'আবার আগের রং দেখুন ↗':'রং বদলে দেখুন ↗'});
 renderCourses();setPaymentNumbers();

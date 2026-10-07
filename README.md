@@ -17,16 +17,18 @@
 - Google Forms/Drive-এ enrollment proof-গুলো private রাখুন; spreadsheet-এ public link sharing চালু করবেন না।
 - বাস্তব শিক্ষার্থীর অনুমতি ছাড়া testimonial, review, income claim বা শিক্ষার্থীর সংখ্যা যোগ করবেন না।
 - Google Form-এ স্ক্রিনশট দিতে Google-এ সাইন-ইন লাগে; অ্যাকাউন্টের নাম, ইমেইল ও ছবি রেকর্ড হতে পারে। ফর্মে এ বিষয়ে শিক্ষার্থীকে জানানো আছে।
+- কোর্সে অ্যাক্সেসের মেয়াদ এবং রিফান্ডের নিয়ম এখনো সাইটে নির্দিষ্ট নেই; নীতিগুলো ঠিক করে পেমেন্ট নেওয়ার আগে প্রকাশ করুন।
+- কোর্স কার্ডের নিজস্ব SVG ইলাস্ট্রেশন চারটি `course-*.svg` ফাইলে আছে; এগুলোও প্রকাশ করুন।
 
 ## কম্পিউটারে চালানো
 
-1. `index.html`, `style.css`, `script.js` একই ফোল্ডারে রাখুন।
+1. `index.html`, `style.css`, `script.js` এবং চারটি `course-*.svg` ইমেজ একই ফোল্ডারে রাখুন।
 2. `index.html`-এ ডাবল-ক্লিক করে ব্রাউজারে খুলুন; অথবা VS Code-এ ফোল্ডারটি খুলে Live Server extension থাকলে **Go Live** চাপুন।
 
 ## GitHub Pages-এ বিনা খরচে প্রকাশ
 
 1. [github.com](https://github.com)-এ সাইন ইন করে **New repository** দিয়ে একটি repository তৈরি করুন।
-2. এই তিনটি ফাইল (`index.html`, `style.css`, `script.js`) repository-তে আপলোড করে **Commit changes** চাপুন। `README.md`-ও যোগ করতে পারেন।
+2. `index.html`, `style.css`, `script.js` এবং চারটি `course-*.svg` ইমেজ repository-র root-এ আপলোড করে **Commit changes** চাপুন। `README.md`-ও যোগ করতে পারেন।
 3. repository-এর **Settings → Pages** খুলুন। **Build and deployment** অংশে **Deploy from a branch** বাছুন।
 4. Branch হিসেবে `main` ও folder হিসেবে `/(root)` নির্বাচন করে **Save** চাপুন।
 5. কয়েক মিনিট পর Pages-এর উপরে দেখানো `https://আপনার-ইউজারনেম.github.io/repository-name/` ঠিকানায় সাইট খুলুন। GitHub Pages-এর ফ্রি সুবিধা public repository-তে ব্যবহার করুন।
