@@ -1,0 +1,41 @@
+# শিখি — অনলাইন কোর্স ওয়েবসাইট
+
+বাংলা ভাষার, মোবাইল-ফ্রেন্ডলি একটি স্ট্যাটিক কোর্স ওয়েবসাইট। HTML, CSS ও Vanilla JavaScript দিয়ে তৈরি; কোনো বিল্ড স্টেপ বা পেইড টুল লাগে না।
+
+## বর্তমান সেটআপ
+
+1. `script.js`-এর `CONFIG`-এ বিকাশ/নগদ নম্বর এবং Google Form URL সেট করা আছে। পরিবর্তন করলে নতুন তথ্য শুধু নিজের অনুমতিতে প্রকাশ করুন—পেমেন্ট নম্বর সাইটে প্রকাশ্যে দেখা যায়।
+2. এনরোলমেন্ট Google Form-এ শিক্ষার্থীর নাম, মোবাইল, কোর্স, ট্রানজ্যাকশন আইডি, পেমেন্ট মাধ্যম ও স্ক্রিনশট চাওয়া হয়। ফাইল আপলোডের কারণে শিক্ষার্থীকে Google-এ সাইন-ইন করতে হবে; ইমেইল সংগ্রহ বন্ধ রাখা হয়েছে।
+3. `index.html`-এ ব্র্যান্ড/যোগাযোগের তথ্য বদলাতে পারেন। কোর্সের নাম, মূল্য, ক্লাস ও বিবরণ `script.js`-এর `courses` তালিকায় সম্পাদনা করা যাবে।
+
+এনরোলমেন্টে তথ্য কপি হয় এবং Google Form নতুন ট্যাবে খোলে। সেখানে প্রতিটি ঘরে তথ্য লিখে স্ক্রিনশট যোগ ও Submit করতে হবে। উত্তরগুলো Google Forms/Drive-এ সংরক্ষিত হবে; এই স্ট্যাটিক সাইট নিজে কোনো তথ্য সংরক্ষণ করে না।
+
+## কম্পিউটারে চালানো
+
+1. `index.html`, `style.css`, `script.js` একই ফোল্ডারে রাখুন।
+2. `index.html`-এ ডাবল-ক্লিক করে ব্রাউজারে খুলুন; অথবা VS Code-এ ফোল্ডারটি খুলে Live Server extension থাকলে **Go Live** চাপুন।
+
+## GitHub Pages-এ বিনা খরচে প্রকাশ
+
+1. [github.com](https://github.com)-এ সাইন ইন করে **New repository** দিয়ে একটি repository তৈরি করুন।
+2. এই তিনটি ফাইল (`index.html`, `style.css`, `script.js`) repository-তে আপলোড করে **Commit changes** চাপুন। `README.md`-ও যোগ করতে পারেন।
+3. repository-এর **Settings → Pages** খুলুন। **Build and deployment** অংশে **Deploy from a branch** বাছুন।
+4. Branch হিসেবে `main` ও folder হিসেবে `/(root)` নির্বাচন করে **Save** চাপুন।
+5. কয়েক মিনিট পর Pages-এর উপরে দেখানো `https://আপনার-ইউজারনেম.github.io/repository-name/` ঠিকানায় সাইট খুলুন। GitHub Pages-এর ফ্রি সুবিধা public repository-তে ব্যবহার করুন।
+
+### VS Code থেকে GitHub-এ পাঠানো (ঐচ্ছিক)
+
+VS Code-এ ফোল্ডার খুলে Source Control থেকে **Initialize Repository** চাপুন। তিনটি সাইট ফাইল stage করে commit করুন, তারপর **Publish to GitHub** বেছে নিন। এরপর GitHub-এ গিয়ে উপরের **Settings → Pages** ধাপগুলো সম্পন্ন করুন। Git CLI ব্যবহার করলে GitHub-এর repository URL বসিয়ে `git remote add origin ...`, `git add .`, `git commit -m "Add course website"` এবং `git push -u origin main` চালান।
+
+## Vercel-এ বিনা খরচে প্রকাশ
+
+1. ফাইলগুলো GitHub repository-তে commit/push করুন।
+2. [vercel.com](https://vercel.com)-এ GitHub দিয়ে সাইন-ইন করুন। **Add New → Project** থেকে repository-টি **Import** করুন।
+3. Framework Preset **Other** রাখুন; Build Command ও Output Directory ফাঁকা রাখুন। **Deploy** চাপুন।
+4. Vercel একটি `*.vercel.app` ঠিকানা দেবে। পরের GitHub push-এ স্বয়ংক্রিয়ভাবে নতুন deployment হবে।
+
+## নোট
+
+- সাইটটি সম্পূর্ণ static; লগইন, ভিডিও হোস্টিং, পেমেন্ট যাচাই বা স্বয়ংক্রিয় এনরোলমেন্ট backend যুক্ত নেই।
+- Google Fonts-এর জন্য ইন্টারনেট সংযোগ থাকলে বাংলা ফন্ট সুন্দর দেখাবে; সংযোগ না থাকলেও সিস্টেম ফন্টে সাইট চলবে।
+- কোর্সের দাম, পেমেন্ট নম্বর ও নীতিমালা প্রকাশের আগে যাচাই করুন।
