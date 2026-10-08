@@ -13,7 +13,7 @@
 - এনরোলমেন্ট Google Form-এ নাম, মোবাইল, কোর্স, Transaction ID, payment method ও screenshot যায়। Screenshot দিতে Google account-এ sign in করতে হয়; Google account-এর নাম, email ও ছবি রেকর্ড হতে পারে। Prefill করা তথ্য URL/history-তে থাকতে পারে। শিক্ষার্থীকে Google Form-এ নিজে Submit করতে হবে।
 - Form response Shikhi Enrollment (Responses) spreadsheet-এ সংরক্ষিত হয়। Transaction ID মিলিয়ে payment ম্যানুয়ালি যাচাই করে তারপর course access পাঠান। সাইট নিজে payment যাচাই বা course access দেয় না।
 - Spreadsheet ও Drive-এর payment proof private রাখুন; public sharing চালু করবেন না।
-- Course access-এর মেয়াদ ও refund policy এখনো নির্দিষ্ট নয়। পেমেন্ট নেওয়ার আগে বাস্তব নিয়মগুলো স্থির করে site-এ জানিয়ে দিন। অনুমতি ছাড়া testimonial বা income claim যোগ করবেন না।
+- Course access link পাঠানোর দিন থেকে ৬ মাস। পেমেন্ট manually verify হওয়ার পর WhatsApp-এ সাধারণত ১ কর্মদিবসে link পাঠানো হবে; ৩ কর্মদিবসে না এলে যোগাযোগ করুন। পেমেন্টের ৭ দিনের মধ্যে duplicate/excess payment, verification-এর পর ৩ কর্মদিবসেও course না পাওয়া, বা course cancellation/non-delivery হলে প্রমাণসহ refund চাইতে পারবেন; অনুমোদিত refund একই মাধ্যম দিয়ে সর্বোচ্চ ৭ কর্মদিবসে পাঠানোর লক্ষ্য। Link/material পাঠানোর পর মত পরিবর্তন, ভুল নির্বাচন, course অসমাপ্ত বা ব্যক্তিগত device/internet সমস্যায় সাধারণত refund নেই; আইনগত অধিকার অক্ষুণ্ণ। শিক্ষক/প্রতিষ্ঠানের যাচাইযোগ্য পরিচিতি প্রকাশিত নয়; support প্রতিদিন সকাল ১০টা–রাত ৮টা, বাংলাদেশ সময়। অনুমতি ছাড়া testimonial বা income claim যোগ করবেন না।
 
 ## লোকালি চালানো
 
