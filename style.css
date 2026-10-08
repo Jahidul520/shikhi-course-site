@@ -90,6 +90,7 @@ body{background-color:#070b16;background-image:radial-gradient(ellipse at 14% 9%
 .video-card:hover{transform:translateY(-3px);border-color:rgba(112,232,255,.4)}
 .video-frame{aspect-ratio:16/9;background:#080d18}
 .video-frame iframe{display:block;width:100%;height:100%;border:0}
+.video-frame video{display:block;width:100%;height:100%;border:0;object-fit:contain;background:#050b13}
 .video-copy{padding:16px 19px 18px}
 .video-category{color:#70e8ff;font-size:9px;letter-spacing:.06em}
 .video-copy h3{margin:7px 0 4px;color:#edf5ff;font-size:15px;line-height:1.6}
