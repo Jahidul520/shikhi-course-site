@@ -1,0 +1,63 @@
+1
+00:00:00,000 --> 00:00:18,000
+আজ আমরা browser-এ দেখা যায় এমন একটি পরিচিতি পেজ বানাব। শেষে file, heading, paragraph, তালিকা ও link নিজে লিখতে পারবেন।
+
+2
+00:00:18,000 --> 00:00:36,000
+HTML হলো markup language—এটি browser-কে content-এর ধরন ও গঠন জানায়। Browser HTML file পড়ে content-কে web page হিসেবে দেখায়।
+
+3
+00:00:36,000 --> 00:00:54,000
+একটি folder তৈরি করে তার ভেতরে index.html নামে file রাখুন। VS Code বা text editor-এ file খুলে code লিখুন।
+
+4
+00:00:54,000 --> 00:01:12,000
+প্রথম লাইনের doctype browser-কে আধুনিক HTML document-এর কথা জানায়। এটি page-এ visitor-এর দেখা লেখা নয়।
+
+5
+00:01:12,000 --> 00:01:30,000
+html tag-এ lang="bn" দিলে page-এর মূল ভাষা বাংলা বোঝায়। এটি screen reader ও browser-এর language handling-এ সহায়তা করে।
+
+6
+00:01:30,000 --> 00:01:48,000
+head অংশে character encoding, mobile viewport ও browser tab-এর title লিখুন। এই metadata body content-এর মতো দেখা যায় না।
+
+7
+00:01:48,000 --> 00:02:06,000
+body-র ভেতরে visitor যে heading, লেখা, list ও link দেখবেন সেগুলো থাকে। Content শেষে body ও html বন্ধ করুন।
+
+8
+00:02:06,000 --> 00:02:24,000
+h1 হলো page-এর প্রধান heading। একটি পরিষ্কার, বর্ণনামূলক শিরোনাম লিখুন। Opening tag ও closing tag মিলিয়ে লিখতে হবে।
+
+9
+00:02:24,000 --> 00:02:42,000
+p tag-এর মধ্যে ছোট paragraph লিখুন। Privacy রক্ষায় চাইলে নিজের নামের বদলে কাল্পনিক নাম ব্যবহার করুন।
+
+10
+00:02:42,000 --> 00:03:00,000
+ul হলো unordered list; প্রতিটি li tag একটি list item তৈরি করে। প্রতিটি item আলাদা li-র মধ্যে রাখুন।
+
+11
+00:03:00,000 --> 00:03:18,000
+a tag-এর href attribute গন্তব্য বলে; link-এর লেখা যেন গন্তব্য বুঝিয়ে দেয়। “এখানে” না লিখে “আমার project দেখুন” লিখুন।
+
+12
+00:03:18,000 --> 00:03:36,000
+doctype, html, head ও body-র সঙ্গে লেখা, list ও link সাজান। Indentation একই রাখলে nesting বোঝা সহজ হয়।
+
+13
+00:03:36,000 --> 00:03:54,000
+ফাইল save করে browser-এ খুলুন। পরিবর্তনের পর reload দিন। Tab title, heading, paragraph, list ও link মিলিয়ে দেখুন।
+
+14
+00:03:54,000 --> 00:04:12,000
+Tag বন্ধ হয়েছে কি না, বানান ঠিক আছে কি না, file save হয়েছে কি না দেখুন। href-এর path ও folder যাচাই করুন।
+
+15
+00:04:12,000 --> 00:04:30,000
+একটি h1, পরিচিতির paragraph, শেখার আগ্রহের তিনটি বিষয় ও একটি project link যোগ করুন। Browser-এ খুলে checklist মিলান।
+
+16
+00:04:30,000 --> 00:04:48,300
+HTML file, head ও body, h1, p, ul/li এবং href-সহ a tag ব্যবহার করলেন। পরের পাঠে semantic অংশ দিয়ে page সাজাব।
