@@ -135,3 +135,29 @@ body{background-color:#070b16;background-image:radial-gradient(ellipse at 14% 9%
 .footer-contact{display:flex;align-items:center;gap:14px;color:#64736b;font-size:10px}.footer-contact>span{font-weight:700;color:var(--green)}.footer-contact a{text-decoration:underline;text-underline-offset:3px}.footer-contact a:hover{color:var(--green)}
 @media(max-width:650px){.footer-contact{width:100%;order:2;flex-wrap:wrap;gap:8px 14px;padding:0 0 10px}.footer-contact>span{width:100%}.back-top{margin-left:auto}}
 @media(prefers-reduced-motion:reduce){.skip-link{transition:none}}
+
+
+/* Distinctive, accessible wallet cards (brand-inspired, not official logo artwork). */
+.payment-methods{gap:12px}
+.payment-method{position:relative;isolation:isolate;overflow:hidden;min-height:72px;padding:12px 14px 12px 16px;gap:13px;border-radius:12px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.payment-method::before{position:absolute;inset:0 auto 0 0;width:4px;border-radius:12px 0 0 12px;content:"";z-index:-1}
+.payment-method::after{position:absolute;right:48px;top:-38px;width:110px;height:110px;border-radius:50%;content:"";z-index:-1;pointer-events:none;opacity:.8}
+.payment-method.bkash{border-color:rgba(232,40,104,.36);background:linear-gradient(112deg,rgba(232,40,104,.12),rgba(19,28,48,.96) 66%)}
+.payment-method.bkash::before{background:#e62968}
+.payment-method.bkash::after{background:radial-gradient(circle,rgba(232,40,104,.2),transparent 70%)}
+.payment-method.nagad{border-color:rgba(245,133,50,.38);background:linear-gradient(112deg,rgba(245,133,50,.13),rgba(19,28,48,.96) 66%)}
+.payment-method.nagad::before{background:#f18432}
+.payment-method.nagad::after{background:radial-gradient(circle,rgba(245,133,50,.2),transparent 70%)}
+.payment-method:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.17)}
+.payment-method .pay-logo{position:relative;width:42px;height:42px;flex:0 0 42px;border:1px solid rgba(255,255,255,.22);border-radius:13px;font-size:23px;font-weight:800;font-style:italic;letter-spacing:-.04em;box-shadow:0 5px 14px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.2)}
+.payment-method.bkash .pay-logo{background:linear-gradient(145deg,#f1447d,#d91f5e)}
+.payment-method.nagad .pay-logo{background:linear-gradient(145deg,#ffa347,#eb6f22)}
+.payment-method small{font-size:10px;font-weight:600;letter-spacing:.01em}
+.payment-method strong{font-size:14px;letter-spacing:.045em}
+.payment-method.bkash .copy-button{border-color:rgba(232,40,104,.4);background:rgba(232,40,104,.1);color:#ff8cad}
+.payment-method.bkash .copy-button:hover{background:rgba(232,40,104,.2)}
+.payment-method.nagad .copy-button{border-color:rgba(245,133,50,.42);background:rgba(245,133,50,.1);color:#ffb36e}
+.payment-method.nagad .copy-button:hover{background:rgba(245,133,50,.2)}
+.payment-method .copy-button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@media(max-width:420px){.payment-method{gap:10px;padding-inline:12px}.payment-method .pay-logo{width:38px;height:38px;flex-basis:38px;font-size:21px}.payment-method strong{font-size:12px}.payment-method .copy-button{min-width:43px;padding-inline:9px}}
+@media(prefers-reduced-motion:reduce){.payment-method{transition:none}.payment-method:hover{transform:none}}
