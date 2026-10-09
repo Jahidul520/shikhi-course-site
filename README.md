@@ -7,12 +7,15 @@
 - Vercel: https://shikhi-course-site.vercel.app/
 - GitHub Pages: https://jahidul520.github.io/shikhi-course-site/
 
-## বর্তমান ভর্তি অবস্থা
+## ভর্তি ও ম্যানুয়াল পেমেন্ট
 
-- নতুন ভর্তি আপাতত সাময়িকভাবে বন্ধ। পূর্ণ কোর্সের ক্লাস ও শিক্ষার্থী উপকরণ প্রস্তুত না হওয়া পর্যন্ত বিকাশ/নগদে টাকা পাঠাবেন না। সাইটে পেমেন্ট নম্বর, এনরোলমেন্ট ফর্ম বা Google Form জমা দেওয়ার ব্যবস্থা নেই।
-- কোর্স কার্ড, সিলেবাস ও বিনামূল্যের ডেমো দেখে প্রশ্ন করতে WhatsApp 01615709639 / 01408754249 অথবা Telegram @Joy42s-এ যোগাযোগ করুন।
-- প্রস্তুত হলে ভর্তি চালু করার আগে কোর্সে আসলে কী দেওয়া হবে, অ্যাক্সেস কতদিন থাকবে, সাপোর্ট ও রিফান্ডের নিয়ম নতুন করে প্রকাশ করতে হবে।
-- শিক্ষক/প্রতিষ্ঠানের যাচাইযোগ্য পরিচিতি এখনো প্রকাশিত নয়। অনুমতি ছাড়া testimonial বা আয়-সংক্রান্ত দাবি যোগ করবেন না।
+- সাইটে ভর্তি ফর্ম চালু আছে। কোর্সের বর্তমান ক্লাস-অ্যাক্সেস ও শুরুর তারিখ WhatsApp বা Telegram-এ নিশ্চিত না করে টাকা পাঠাবেন না। ডেমোটি পূর্ণ কোর্স নয়।
+- bKash Personal: 01615709639 · Nagad Personal: 01408754249। Send Money করুন; কোনো automated payment gateway নেই, লেনদেন হাতে যাচাই করতে হবে।
+- Google Form-এ নাম, মোবাইল, কোর্স, Transaction ID, পেমেন্ট মাধ্যম ও স্ক্রিনশট জমা দিন। Screenshot upload করতে Google sign-in লাগে; Google account-এর নাম, ইমেইল ও ছবি Google সংরক্ষণ করতে পারে। Prefilled তথ্য URL বা browser history-তে দেখা যেতে পারে।
+- Form responses Shikhi Enrollment (Responses) spreadsheet-এ যায়। Spreadsheet ও payment proofs private রাখুন; public sharing চালু করবেন না।
+- পেমেন্ট ম্যানুয়ালি যাচাই হলে সাধারণত ১ কর্মদিবসে ব্যক্তিগত Google Drive access পাঠানো হবে। Drive access link পাওয়ার দিন থেকে ৬ মাস থাকে। Google Form-এ screenshot upload করতে ব্যবহৃত Google account-এ access দিতে হবে।
+- ৭ দিনের মধ্যে duplicate/excess payment, verification-এর ৩ কর্মদিবসেও course না পাওয়া, বা course cancellation/non-delivery হলে proof-সহ refund চাইতে পারবেন। অনুমোদিত refund একই মাধ্যমে সর্বোচ্চ ৭ কর্মদিবসে পাঠানোর লক্ষ্য। Link/material পাঠানোর পর শুধু মত বদল, ভুল course, course অসমাপ্ত, বা ব্যক্তিগত device/internet সমস্যায় সাধারণত refund নেই; আইনগত অধিকার অক্ষুণ্ণ।
+- Support: প্রতিদিন সকাল ১০টা–রাত ৮টা, বাংলাদেশ সময়; সাধারণত ১ কর্মদিবসে উত্তর। WhatsApp 01615709639 / 01408754249 অথবা Telegram @Joy42s। শিক্ষক/প্রতিষ্ঠানের যাচাইযোগ্য পরিচিতি এখনো প্রকাশিত নয়; testimonial বা আয়-সংক্রান্ত দাবি বানিয়ে যোগ করবেন না।
 
 ## লোকালি চালানো
 
@@ -28,4 +31,4 @@ Repository Settings → Pages-এ Deploy from a branch নির্বাচন 
 
 ## অতিরিক্ত তথ্য
 
-কোর্সের সারাংশ index.html-এ এবং কোর্সের নাম, মূল্য, ক্লাস ও বিবরণ script.js-এর courses তালিকায় সম্পাদনা করুন। HTML অংশে ৪:৪৮ মিনিটের AI-সহায়ক নীরব practice video যোগ করা হয়েছে; এটি পূর্ণ paid class নয়, এতে কণ্ঠ নেই এবং সাইটে এভাবেই চিহ্নিত। বাকি তিনটি নমুনা স্বতন্ত্র YouTube নির্মাতাদের; তাদের credit ও মূল লিংক কার্ডে আছে। ভর্তি বন্ধই আছে। কোর্স কার্ডের ছবির উৎস ও নির্মাতার credit সাইটে দেওয়া আছে।
+কোর্সের সারাংশ index.html-এ এবং কোর্সের নাম, মূল্য, ক্লাস ও বিবরণ script.js-এর courses তালিকায় সম্পাদনা করুন। ৪:৪৮ মিনিটের HTML অনুশীলনী ভিডিওতে AI-উৎপন্ন Microsoft Zira ইংরেজি কণ্ঠ এবং বাংলা স্লাইড আছে; এটি পূর্ণ paid class নয়। English captions ভিডিওতে চালু, ইংরেজি caption file ও বাংলা transcript দুটিই ডাউনলোড করা যায়। বাকি তিনটি নমুনা স্বতন্ত্র YouTube নির্মাতাদের; তাদের credit ও মূল লিংক কার্ডে আছে। পেমেন্ট নম্বর ও Google Form connection script.js-এর CONFIG-এ আছে।
