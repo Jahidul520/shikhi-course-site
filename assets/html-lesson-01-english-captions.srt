@@ -1,0 +1,63 @@
+1
+00:00:00,000 --> 00:00:18,000
+Today, we will build a simple introduction page that opens in a web browser. By the end, you will know how to create a file, a heading, a paragraph, a list, and a link.
+
+2
+00:00:18,000 --> 00:00:36,000
+HTML is a markup language. It tells a browser what each piece of content is and how the page is structured. The browser reads the file and displays it as a web page.
+
+3
+00:00:36,000 --> 00:00:54,000
+First, create a folder and add a file named index dot H T M L. Open that file in Visual Studio Code or another text editor, then write your code.
+
+4
+00:00:54,000 --> 00:01:12,000
+The doctype on the first line tells the browser to use modern HTML rules. It is document information, so visitors do not see it as page text.
+
+5
+00:01:12,000 --> 00:01:30,000
+The lang attribute tells the browser what language the page uses. Screen readers and other tools can use this information to present the page more clearly.
+
+6
+00:01:30,000 --> 00:01:48,000
+The head contains useful page information, such as character encoding, the mobile viewport, and the browser tab title. This information is not shown like regular page content.
+
+7
+00:01:48,000 --> 00:02:06,000
+The body contains the content visitors can see: headings, text, lists, and links. Close the head, open the body, and close both elements at the end.
+
+8
+00:02:06,000 --> 00:02:24,000
+Use an H one heading for the page's main title. Choose a clear title, and remember to write both the opening tag and its matching closing tag.
+
+9
+00:02:24,000 --> 00:02:42,000
+Put a short introduction inside a P tag. You can describe what the page is about. For privacy, you may use a fictional name instead of your own.
+
+10
+00:02:42,000 --> 00:03:00,000
+U L creates a bulleted list, and each L I tag creates one list item. Put every item in its own L I element so the browser can display the list correctly.
+
+11
+00:03:00,000 --> 00:03:18,000
+An A tag creates a link. Its H R E F attribute tells the browser where to go. Write link text that describes the destination, such as, view my project.
+
+12
+00:03:18,000 --> 00:03:36,000
+Now combine the doctype, HTML, head, and body with your text, list, and link. Consistent indentation makes it easier to understand which elements are nested inside others.
+
+13
+00:03:36,000 --> 00:03:54,000
+Save the file and open it in a browser. After you make a change, save again and reload. Check the tab title, heading, paragraph, list, and link.
+
+14
+00:03:54,000 --> 00:04:12,000
+If something is missing, check that each tag is closed, the spelling is correct, and the file is saved. Also check that the link points to the right file path.
+
+15
+00:04:12,000 --> 00:04:30,000
+Your turn: add one H one, an introduction paragraph, three learning interests, and one project link. Open it in a browser and use the checklist to review your work.
+
+16
+00:04:30,000 --> 00:04:48,000
+You have used an HTML file, head and body, H one, P, U L and L I, and an A tag with H R E F. In the next lesson, we will organize the page with semantic elements.
